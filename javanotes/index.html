@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Java Notes</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Java Notes - Easy & Short</h1>
+
+    <section>
+        <h2>1. Anonymous Function</h2>
+        <p>A function without a name, often used as a parameter or assigned to a variable.</p>
+        <pre><code>Runnable r = new Runnable() {
+    public void run() {
+        System.out.println("Hello!");
+    }
+};</code></pre>
+    </section>
+
+    <section>
+        <h2>2. Arrow Function (Java 8+ Lambda)</h2>
+        <p>Short syntax for anonymous functions using lambda expression.</p>
+        <pre><code>Runnable r = () -> System.out.println("Hello!");</code></pre>
+    </section>
+
+    <section>
+        <h2>3. Conditional Block</h2>
+        <p>Code executed based on a condition (if-else, switch).</p>
+        <pre><code>int x = 10;
+if(x &gt; 5){
+    System.out.println("Greater");
+}else{
+    System.out.println("Smaller");
+}</code></pre>
+    </section>
+
+    <section>
+        <h2>4. Higher Order Function</h2>
+        <p>A function that takes another function as parameter or returns a function.</p>
+        <pre><code>public void execute(Runnable r){
+    r.run();
+}</code></pre>
+    </section>
+
+    <section>
+        <h2>5. Callback Function</h2>
+        <p>A function passed as argument and called inside another function.</p>
+        <pre><code>public void callbackExample(Runnable r){
+    System.out.println("Start");
+    r.run(); // callback
+    System.out.println("End");
+}</code></pre>
+    </section>
+
+    <section>
+        <h2>6. Inheritance</h2>
+        <p>One class acquires properties of another class using <code>extends</code>.</p>
+        <pre><code>class Parent { int x; }
+class Child extends Parent { int y; }</code></pre>
+    </section>
+
+    <section>
+        <h2>7. Polymorphism</h2>
+        <p>Ability of object to take many forms (method overloading & overriding).</p>
+        <pre><code>class Math{
+    int add(int a,int b){ return a+b; }
+    double add(double a,double b){ return a+b; }
+}</code></pre>
+    </section>
+
+    <section>
+        <h2>8. Abstract Class</h2>
+        <p>Class that cannot be instantiated, may contain abstract methods.</p>
+        <pre><code>abstract class Shape {
+    abstract void draw();
+}</code></pre>
+    </section>
+
+    <section>
+        <h2>9. Abstract Method</h2>
+        <p>Method without body, must be implemented in subclass.</p>
+        <pre><code>abstract void draw();</code></pre>
+    </section>
+
+    <section>
+        <h2>10. Constructor</h2>
+        <p>Special method used to initialize object.</p>
+        <pre><code>class Student {
+    String name;
+    Student(String n){ name = n; }
+}</code></pre>
+    </section>
+
+    <section>
+        <h2>11. Call by Value</h2>
+        <p>Method receives a copy of variable, original not changed.</p>
+        <pre><code>void change(int a){ a=10; }</code></pre>
+    </section>
+
+    <section>
+        <h2>12. Call by Reference</h2>
+        <p>Method receives object reference, original object can change.</p>
+        <pre><code>void change(Student s){ s.name="ABC"; }</code></pre>
+    </section>
+
+    <section>
+        <h2>13. DOM (Document Object Model)</h2>
+        <p>Represents HTML elements as objects to manipulate them (used in JS mostly).</p>
+        <pre><code>document.getElementById("id").innerHTML = "Hello";</code></pre>
+    </section>
+
+    
+
+    <section>
+        <h1> What is a Wrapper Class?</h1>
+        <ul>
+            <li>Wrapper class is a class that wraps (encapsulates) primitive data types into objects.</li>
+            <li>It allows primitives to be used as objects.</li>
+            <li>Example: int → Integer, double → Double, char → Character.</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2> Why Wrapper Classes are Used?</h2>
+        <ul>
+            <li>To convert primitive types into objects (useful for Collections like ArrayList).</li>
+            <li>Provides utility methods to manipulate primitive values.</li>
+            <li>Allows use of primitives in generic classes.</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2> List of Wrapper Classes</h2>
+        <table>
+            <tr>
+                <th>Primitive</th>
+                <th>Wrapper Class</th>
+            </tr>
+            <tr>
+                <td>byte</td>
+                <td>Byte</td>
+            </tr>
+            <tr>
+                <td>short</td>
+                <td>Short</td>
+            </tr>
+            <tr>
+                <td>int</td>
+                <td>Integer</td>
+            </tr>
+            <tr>
+                <td>long</td>
+                <td>Long</td>
+            </tr>
+            <tr>
+                <td>float</td>
+                <td>Float</td>
+            </tr>
+            <tr>
+                <td>double</td>
+                <td>Double</td>
+            </tr>
+            <tr>
+                <td>char</td>
+                <td>Character</td>
+            </tr>
+            <tr>
+                <td>boolean</td>
+                <td>Boolean</td>
+            </tr>
+        </table>
+    </section>
+
+    <section>
+        <h2>Autoboxing & Unboxing</h2>
+        <ul>
+            <li><strong>Autoboxing:</strong> Automatic conversion of primitive to wrapper object.</li>
+            <pre><code>Integer i = 10; // int → Integer automatically</code></pre>
+            <li><strong>Unboxing:</strong> Automatic conversion of wrapper object to primitive.</li>
+            <pre><code>int x = i; // Integer → int automatically</code></pre>
+        </ul>
+    </section>
+
+    <section>
+        <h2> Common Methods in Wrapper Classes</h2>
+        <ul>
+            <li><code>Integer.parseInt("123")</code> → Convert String to int</li>
+            <li><code>Double.parseDouble("12.5")</code> → Convert String to double</li>
+            <li><code>Integer.valueOf(100)</code> → Convert int to Integer object</li>
+            <li><code>Character.isDigit('5')</code> → Check if character is a digit</li>
+            <li><code>Boolean.parseBoolean("true")</code> → Convert String to boolean</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2> Advantages of Wrapper Classes</h2>
+        <ul>
+            <li>Allows primitive types to be stored in collections (ArrayList, HashMap).</li>
+            <li>Provides utility methods for data conversion and manipulation.</li>
+            <li>Enables use of generics with primitive types.</li>
+        </ul>
+    </section>
+
+<section>
+    <h2>14. Generics in Java</h2>
+    <p>Generics allow you to write classes, interfaces, and methods with type parameters. They provide **type safety** and **reusability**.</p>
+    <ul>
+        <li><strong>Definition:</strong> A way to define classes/methods that can work with any type.</li>
+        <li><strong>Syntax:</strong> Use &lt;T&gt; as a placeholder for type.</li>
+        <li><strong>Example of Generic Class:</strong>
+            <pre><code>class Box&lt;T&gt; {
+    private T value;
+    void set(T v){ value = v; }
+    T get(){ return value; }
+}
+Box&lt;Integer&gt; intBox = new Box&lt;&gt;();
+intBox.set(10);</code></pre>
+        </li>
+        <li><strong>Example of Generic Method:</strong>
+            <pre><code>public &lt;T&gt; void printArray(T[] arr){
+    for(T item : arr){
+        System.out.println(item);
+    }
+}</code></pre>
+        </li>
+        <li><strong>Benefits:</strong>
+            <ul>
+                <li>Compile-time type checking (less errors)</li>
+                <li>Code reusability</li>
+                <li>No need for casting</li>
+            </ul>
+        </li>
+        <li><strong>Wildcards:</strong> Use <code>?</code> to accept any type: <code>List&lt;?&gt;</code></li>
+    </ul>
+</section>
+
+</body>
+</html>
