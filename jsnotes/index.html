@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Notes</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <h1>JavaScript Notes</h1>
+
+    <!-- Introduction -->
+    <section>
+        <h2>Introduction to JavaScript</h2>
+        <p>JavaScript is a  synchronous ,non blocking i/o scripting language used to make websites interactive. It can change content, respond to user actions, handle data, and add logic to web pages.</p>
+    <h3>Synchronous</h3>
+    <ul>
+        <li>In synchronous execution, tasks run one after another in order.</li>
+        <li>Each line waits until the previous line completes.</li>
+        
+        <h2>Animated Example: Synchronous</h2>
+<div class="sync-container">
+    <div class="person">Task 1</div>
+    <div class="person">Task 2</div>
+    <div class="person">Task 3</div>
+</div>
+
+    </ul>
+
+    <h3>Non-Blocking I/O</h3>
+    <ul>
+        <li>Non-blocking I/O means JavaScript does not wait for slow tasks like reading files, database, or API calls.</li>
+        <li>It continues running other code while I/O operations complete in the background.</li>
+        <li>Example: You order food (I/O task) and meanwhile talk with friends (other tasks continue).</li>
+    <h2>Animated Example: Non-Blocking I/O</h2>
+<div class="nonblock-container">
+    <div class="main-task">Main Task 1</div>
+    <div class="main-task">Main Task 2</div>
+    <div class="io-task">I/O Task</div>
+</div>
+    </ul>
+
+    </section>
+
+    <!-- History -->
+    <section>
+        <h2>History of JavaScript</h2>
+        <p>JavaScript was created in 1995 by Brendan Eich at Netscape. It was originally made in just 10 days and was called “LiveScript”. Later it was renamed to JavaScript and became the most popular scripting language for the web.</p>
+    </section>
+
+    
+    <!-- Variables -->
+    <section>
+        <h2>Variable: Declaration, Definition & Initialization</h2>
+        <p><b>Declaration:</b> Creating a variable name.</p>
+        <p><b>Definition:</b> Reserve memory for the variable.</p>
+        <p><b>Initialization:</b> Giving first value to the variable.</p>
+        
+        <pre>
+let a;          // declaration
+a = 10;         // initialization
+let b = 20;     // declaration + initialization
+        </pre>
+    </section>
+
+    <!-- var, let, const difference -->
+    <section>
+        <h2>Difference Between var, let & const</h2>
+
+        <table>
+            <tr>
+                <th>Feature</th>
+                <th>var</th>
+                <th>let</th>
+                <th>const</th>
+            </tr>
+            <tr>
+                <td>Re-declare</td>
+                <td>Allowed</td>
+                <td>Not allowed</td>
+                <td>Not allowed</td>
+            </tr>
+            <tr>
+                <td>Re-assign</td>
+                <td>Allowed</td>
+                <td>Allowed</td>
+                <td>Not allowed</td>
+            </tr>
+            <tr>
+                <td>Scope</td>
+                <td>Function</td>
+                <td>Block</td>
+                <td>Block</td>
+            </tr>
+             <tr>
+            <td>Hoisting</td>
+            <td>Hoisted (value = undefined)</td>
+            <td>Hoisted but in TDZ(Temporal Dead Zone)</td>
+            <td>Hoisted but in TDZ(Temporal Dead Zone)</td>
+        </tr>
+        <td>Global Object Property</td>
+            <td>Yes (becomes window.varName)</td>
+            <td>No</td>
+            <td>No</td>
+        </tr>
+
+        <tr>
+            <td>Use Case</td>
+            <td>Old code, not recommended</td>
+            <td>Best for variables that change</td>
+            <td>Best for fixed values</td>
+        </tr>
+
+        </table>
+    </section>
+<!-- Hoisting Notes -->
+<section>
+    <h2>JavaScript Hoisting</h2>
+
+    <p>
+        Hoisting means JavaScript moves the <b>names of variables and functions</b>
+        to the top before executing the code.  
+        But remember → only the <b>name is lifted</b>, not the <b>value</b>.
+    </p>
+
+    <div class="note-box">
+        Simple example:  
+        A teacher writes all students' names in the register first,  
+        but marks are filled later.
+    </div>
+
+    <h3>✔ How Hoisting Works?</h3>
+    <ul>
+        <li><b>var</b> — Hoisted but its value becomes <code>undefined</code>.</li>
+        <li><b>let</b> and <b>const</b> — Hoisted but not initialized.  
+            They stay in the <b>TDZ (Temporal Dead Zone)</b>.</li>
+        <li><b>Function declarations</b> — Fully hoisted.  
+            So they can be called before their actual line.</li>
+    </ul>
+
+    <h3>✔ Simple Example (var Hoisting)</h3>
+    <pre>
+console.log(a);  // output: undefined
+var a = 10;
+
+/* Behind the scene:
+var a;        // hoisted
+console.log(a);
+a = 10;       
+*/
+    </pre>
+
+    <h3>✔ Example (let & const — TDZ)</h3>
+    <pre>
+console.log(b); // ❌ ReferenceError (TDZ)
+let b = 20;
+    </pre>
+
+    <div class="tdz-box">
+        TDZ means:  
+        the variable exists but cannot be used yet  
+        because JavaScript says — "Wait! I don’t know its value yet!"
+    </div>
+
+    <h3>✔ Function Hoisting Example</h3>
+    <pre>
+// Works (function is hoisted)
+console.log(add(2, 3)); // 5
+
+function add(x, y) {
+    return x + y;
+}
+    </pre>
+
+    <h3>✔ Function Expression (Not Fully Hoisted)</h3>
+    <pre>
+// ❌ Error (var is hoisted but value is undefined)
+console.log(sub(3, 2));
+
+var sub = function(x, y) {
+    return x - y;
+};
+    </pre>
+
+    <h3>✔ Quick Summary</h3>
+    <table>
+        <tr>
+            <th>Keyword</th>
+            <th>Hoisted?</th>
+            <th>Value before declaration</th>
+        </tr>
+        <tr>
+            <td>var</td>
+            <td>Yes</td>
+            <td>undefined</td>
+        </tr>
+        <tr>
+            <td>let</td>
+            <td>Yes</td>
+            <td>TDZ (error)</td>
+        </tr>
+        <tr>
+            <td>const</td>
+            <td>Yes</td>
+            <td>TDZ (error)</td>
+        </tr>
+        <tr>
+            <td>function</td>
+            <td>Yes (fully)</td>
+            <td>Can be used before declaration</td>
+        </tr>
+    </table>
+</section>
+
+  
+
+    <!-- Function Notes Section -->
+<section>
+    <h2>JavaScript Functions </h2>
+
+    <p>
+        A <b>function</b> is a block of code designed to perform a specific task.  
+        It runs only when it is <b>called</b>.  
+        Functions help make code reusable and cleaner.
+    </p>
+
+    <div class="note-box">
+        Simple example:  
+        A function is like a machine.  
+        You give input → machine works → gives output.
+    </div>
+
+    <h3>✔ Why do we use Functions?</h3>
+    <ul>
+        <li>To reuse code</li>
+        <li>To organize code</li>
+        <li>To make code clean and readable</li>
+        <li>To avoid repeating the same logic</li>
+    </ul>
+
+    </table>
+</section>
+>
+
+    <!-- Functional Programming Notes -->
+<section>
+    <h2>Functional Programming</h2>
+
+    <p>
+        Functional Programming is a way of writing programs using 
+        <b>pure functions</b>,<b>that means we can write a function in another function</b> 
+        It focuses on <b>what to do</b> instead of <b>how to do it</b>.
+    </p>
+
+    <div class="note-box">
+        Simple Example:  
+        A calculator is a perfect functional machine —  
+        You give input → it gives output → it does not change anything around it.
+    </div>
+
+    <h3>✔ Key Features</h3>
+    <ul>
+        <li>writing programs using only functions
+ <li>where a function takes some input and gives output
+     and </li>
+     <li>does not change anything else.</li>
+       
+    </ul>
+
+   <h3> Example1-pure function</h3>
+      <pre>
+        function square(n) 
+        {
+           return n * n;
+        }
+
+        console.log(square(5)); // always 25
+       </pre>
+
+<!-- Static vs Dynamic Languages Section -->
+<section>
+    <h2>Static vs Dynamic Programming Languages</h2>
+
+    <p>
+        Languages are divided based on <b>when type checking happens</b>:  
+        Before running the program or while running the program.
+    </p>
+
+    <h3>1️⃣ Static Languages (Type checked before execution)</h3>
+    <p>
+        These languages check errors at <b>compile-time</b>.  
+        Variables must have a fixed type.
+    </p>
+
+    <pre>
+// Example (Java - Static)
+int x = 10;
+x = "Hello"; // ❌ Error (string not allowed)
+    </pre>
+
+    <ul>
+        <li>Fewer runtime errors</li>
+        <li>Fast performance</li>
+        <li>More strict</li>
+    </ul>
+
+    <h4>✔ Examples of Static Languages</h4>
+    <ul>
+        <li>Java</li>
+        <li>C</li>
+        <li>C++</li>
+        <li>Go</li>
+        <li>Rust</li>
+    </ul>
+
+    <hr>
+
+    <h3>2️⃣ Dynamic Languages (Type checked at runtime)</h3>
+    <p>
+        These languages allow variables to change their type while running the program.
+        Type errors appear while executing code.
+    </p>
+
+    <pre>
+// Example (JavaScript - Dynamic)
+let a = 10;
+a = "Hello"; // ✔ Allowed
+    </pre>
+
+    <ul>
+        <li>More flexible</li>
+        <li>Easy to write</li>
+        <li>Faster development</li>
+    </ul>
+
+    <h4>✔ Examples of Dynamic Languages</h4>
+    <ul>
+        <li>JavaScript</li>
+        <li>Python</li>
+        <li>Ruby</li>
+        <li>PHP</li>
+        <li>Perl</li>
+    </ul>
+
+    <hr>
+
+    <h3>✔ Quick Summary</h3>
+    <table>
+        <tr>
+            <th>Language Type</th>
+            <th>Type Checking</th>
+            <th>Flexibility</th>
+            <th>Examples</th>
+        </tr>
+        <tr>
+            <td>Static</td>
+            <td>Before running (Compile-time)</td>
+            <td>Strict</td>
+            <td>Java, C, C++, Rust</td>
+        </tr>
+        <tr>
+            <td>Dynamic</td>
+            <td>While running (Runtime)</td>
+            <td>Flexible</td>
+            <td>JavaScript, Python, Ruby</td>
+        </tr>
+    </table>
+</section>
+
+<!-- Arrays in JavaScript Notes Section -->
+<section>
+    <h2>JavaScript Array (Simple Explanation)</h2>
+
+    <p>
+        An <b>array</b> is a special variable in JavaScript that stores 
+        <b>multiple values</b> in one place.  
+        Example: You can store many names, numbers, or colors together.
+    </p>
+
+    <div class="note-box">
+        Simple Example:  
+        A box that contains many items.  
+        That box = Array  
+        Items inside it = Values
+    </div>
+
+    <!-- Creating Arrays -->
+    <h3>✔ How to Create an Array?</h3>
+    <pre>
+let numbers = [10, 20, 30, 40];     // array of numbers
+let names = ["shravni", "Siddhi", "vedika","yogita","pragati"]; // array of strings
+let mixed = [10, "hello", true];    // mixed values
+    </pre>
+
+    <!-- Accessing Elements -->
+    <h3>✔ Accessing Array Values (Using Index)</h3>
+    <p>Index starts from <b>0</b>.</p>
+    <pre>
+let fruits = ["Apple", "Banana", "Mango"];
+
+console.log(fruits[0]); // Apple
+console.log(fruits[1]); // Banana
+console.log(fruits[2]); // Mango
+    </pre>
+
+    <!-- Changing Values -->
+    <h3>✔ Changing Array Values</h3>
+    <pre>
+let colors = ["Red", "Blue", "Green"];
+
+colors[1] = "Yellow";   // change Blue to Yellow
+
+console.log(colors);
+// Output: ["Red", "Yellow", "Green"]
+    </pre>
+
+    <!-- push() -->
+    <h3>✔ push() — Add Value at the End</h3>
+    <pre>
+let animals = ["Dog", "Cat"];
+
+animals.push("Cow"); 
+console.log(animals);
+
+// Output: ["Dog", "Cat", "Cow"]
+    </pre>
+
+    <!-- pop() -->
+    <h3>✔ pop() — Remove Last Value</h3>
+    <pre>
+let items = ["Pen", "Pencil", "Eraser"];
+
+items.pop();  
+console.log(items);
+
+// Output: ["Pen", "Pencil"]
+    </pre>
+
+    <!-- unshift() -->
+    <h3>✔ unshift() — Add Value at the Start</h3>
+    <pre>
+let cars = ["BMW", "Audi"];
+
+cars.unshift("Mercedes");
+console.log(cars);
+
+// Output: ["Mercedes", "BMW", "Audi"]
+    </pre>
+
+    <!-- shift() -->
+    <h3>✔ shift() — Remove First Value</h3>
+    <pre>
+let games = ["Cricket", "Football", "Hockey"];
+
+games.shift();
+console.log(games);
+
+// Output: ["Football", "Hockey"]
+    </pre>
+
+    <!-- length -->
+    <h3>✔ length — Total Items in Array</h3>
+    <pre>
+let cities = ["Mumbai", "Pune", "Delhi", "Nagpur"];
+
+console.log(cities.length);  
+// Output: 4
+    </pre>
+
+    <!-- Loop -->
+    <h3>✔ Looping Through an Array</h3>
+    <pre>
+let students = ["Shravani", "Siddhi", "vedika"];
+
+for (let i = 0; i < students.length; i++) {
+    console.log(students[i]);
+}
+
+/*
+Output:
+Shravani
+Siddhi
+vedika
+*/
+    </pre>
+
+    <!-- Summary Table -->
+    <h3>✔ Summary</h3>
+    <table>
+        <tr>
+            <th>Concept</th>
+            <th>Description</th>
+            <th>Example</th>
+        </tr>
+        <tr>
+            <td>Array</td>
+            <td>Stores multiple values</td>
+            <td>[10, 20, 30]</td>
+        </tr>
+        <tr>
+            <td>Index</td>
+            <td>Position of values</td>
+            <td>fruits[0] → "Apple"</td>
+        </tr>
+        <tr>
+            <td>push()</td>
+            <td>Add value at end</td>
+            <td>animals.push("Cow")</td>
+        </tr>
+        <tr>
+            <td>pop()</td>
+            <td>Remove last value</td>
+            <td>items.pop()</td>
+        </tr>
+        <tr>
+            <td>unshift()</td>
+            <td>Add value at start</td>
+            <td>cars.unshift("Mercedes")</td>
+        </tr>
+        <tr>
+            <td>shift()</td>
+            <td>Remove first value</td>
+            <td>games.shift()</td>
+        </tr>
+        <tr>
+            <td>length</td>
+            <td>Total items</td>
+            <td>cities.length → 4</td>
+        </tr>
+        <tr>
+            <td>Loop</td>
+            <td>Print all values</td>
+            <td>for(...) console.log()</td>
+        </tr>
+    </table>
+</section>
+<!-- Difference Between Arrays in JavaScript and Java -->
+<section>
+    <h2>Difference Between Arrays in JavaScript and Java</h2>
+
+    <table>
+        <tr>
+            <th>Feature</th>
+            <th>JavaScript Array</th>
+            <th>Java Array</th>
+        </tr>
+
+        <tr>
+            <td>Type</td>
+            <td>Dynamic — can store different data types</td>
+            <td>Static — stores only one data type</td>
+        </tr>
+
+        <tr>
+            <td>Size</td>
+            <td>Flexible size (can grow or shrink)</td>
+            <td>Fixed size (cannot change after creation)</td>
+        </tr>
+
+        <tr>
+            <td>Declaration</td>
+            <td>let arr = [10, "Hello", true];</td>
+            <td>int arr[] = {10, 20, 30};</td>
+        </tr>
+
+        <tr>
+            <td>Elements</td>
+            <td>Can mix numbers, strings, booleans, objects</td>
+            <td>All elements must be the same type</td>
+        </tr>
+
+        <tr>
+            <td>Length</td>
+            <td>arr.length → gives current size</td>
+            <td>arr.length → fixed at creation</td>
+        </tr>
+
+        <tr>
+            <td>Methods</td>
+            <td>Has many built-in methods like push(), pop(), shift()</td>
+            <td>Very few built-in operations</td>
+        </tr>
+
+        <tr>
+            <td>Memory</td>
+            <td>Stored as objects</td>
+            <td>Stored in continuous memory blocks</td>
+        </tr>
+
+        <tr>
+            <td>Usage</td>
+            <td>Flexible, used for dynamic operations</td>
+            <td>Fast and safe, used when size is known</td>
+        </tr>
+    </table>
+</section>
