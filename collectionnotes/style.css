@@ -1,0 +1,150 @@
+/* ================= NODE BOXES ================= */
+/* ================= NODE BOXES ================= */
+.diagram {
+    border: 3px solid #2c3e50; /* Only diagram border */
+    border-radius: 20px;
+    padding: 20px;
+    text-align: center;
+    background-color: #fdfdfd;
+    display: inline-block;
+    margin: 20px auto;
+}
+
+.node {
+    display: inline-block;
+    padding: 12px 18px;
+    margin: 10px auto;
+    border-radius: 6px;
+    border: 2px solid #000;
+    font-weight: bold;
+    font-size: 16px;
+    position: relative;
+}
+
+.interface { background: #ffc7c7; } /* Pink */
+.class { background: #b6ddff; }     /* Blue */
+
+/* ================= LINES / ARROWS ================= */
+.line-vertical {
+    width: 2px;
+    height: 30px;
+    background: black;
+    margin: 0 auto;
+}
+
+.line-dashed {
+    width: 2px;
+    height: 30px;
+    border-left: 2px dashed black;
+    margin: 0 auto;
+}
+
+/* ================= TREE STRUCTURE ================= */
+.center-column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.row {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 30px;
+    flex-wrap: wrap;
+}
+
+.col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* ================= MAP SECTION ================= */
+.map-section {
+    text-align: center;
+    margin-top: 50px;
+}
+
+.map-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-top: 0;
+}
+
+.map-row .col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* ================= NOTES SECTIONS ================= */
+.collection-notes, .list-notes, section {
+    border: none; /* Remove border from sections */
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    max-width: 800px;
+    margin: 30px auto;
+    font-family: 'Times New Roman', serif;
+}
+
+.collection-notes h2, .list-notes h2 {
+    color: #2c3e50;
+    text-align:left;
+    margin-bottom: 20px;
+}
+
+.collection-notes h3, .list-notes h3, .list-notes h4 {
+    color: #2980b9;
+    margin-top: 15px;
+    margin-bottom: 8px;
+}
+
+.collection-notes ul, .list-notes ul {
+    margin-left: 20px;
+    line-height: 1.6;
+}
+
+.collection-notes pre, .list-notes pre {
+    background-color: #ecf0f1;
+    padding: 10px;
+    border-radius: 5px;
+    overflow-x: auto;
+}
+
+.collection-notes code, .list-notes code {
+    font-weight: bold;
+    color: #c0392b;
+}
+
+.list-notes table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+}
+
+.list-notes th, .list-notes td {
+    border: 1px solid #34495e;
+    padding: 8px;
+    text-align:left;
+}
+
+.list-notes th {
+    background-color: #2980b9;
+    color: white;
+}
+
+.list-notes tr:nth-child(even) {
+    background-color: #ecf0f1;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .map-row {
+        flex-direction: column;
+        align-items:left;
+        gap: 15px;
+    }
+}

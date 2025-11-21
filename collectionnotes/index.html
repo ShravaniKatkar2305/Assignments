@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Collection Notes</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<section class="collection-notes">
+    <h2>What is collection?</h2>
+    <p>The <strong>Collection</strong> is a ready-to-use implementation of data structure provided by Java.
+    <br>Collection is a <b>set of objects stored in a single variable.</b><br>The <strong>Object class</strong> is the parent of every class.<br>
+    Primitive data types are not supported in collection.</p>
+
+    <h3>Key Features:</h3>
+    <ul>
+        <li>Root interface of Java Collections Framework.</li>
+        <li>Provides common methods like <code>add()</code>, <code>remove()</code>, <code>size()</code>, <code>clear()</code>, <code>isEmpty()</code>.</li>
+        <li>Supports iteration using <code>Iterator</code>.</li>
+        <li>Implemented by various subinterfaces like <code>List</code>, <code>Set</code>, and <code>Queue</code>.</li>
+        <li>Does not allow primitive types directly; use wrapper classes (Integer, Double, etc.).</li>
+    </ul>
+</section>
+
+<h1>Java Collection Framework</h1>
+
+<!-- DIAGRAM -->
+<div class="diagram">
+
+    <!-- ITERABLE + COLLECTION -->
+    <div class="center-column">
+        <div class="node interface">Iterable</div>
+        <div class="line-vertical"></div>
+        <div class="node interface">Collection</div>
+        <div class="line-vertical"></div>
+
+        <!-- MAIN BRANCHES -->
+        <div class="row">
+            <!-- LIST BRANCH -->
+            <div class="col">
+                <div class="node interface">List(interface)</div>
+                <div class="line-dashed"></div>
+                <div class="node class">ArrayList(class)</div>
+                <div class="node class">LinkedList(class)</div>
+                <div class="node class">Vector(legacy class)</div>
+                <div class="line-vertical"></div>
+                <div class="node class">Stack</div>
+            </div>
+
+            <!-- QUEUE BRANCH -->
+            <div class="col">
+                <div class="node interface">Queue(interface)</div>
+                <div class="line-dashed"></div>
+                <div class="node class">PriorityQueue</div>
+                <div class="node interface">Deque</div>
+                <div class="line-dashed"></div>
+                <div class="node class">ArrayDeque</div>
+            </div>
+
+            <!-- SET BRANCH -->
+            <div class="col">
+                <div class="node interface">Set(Interface)</div>
+                <div class="line-dashed"></div>
+                <div class="node class">HashSet(class)</div>
+                <div class="node class">LinkedHashSet(class)</div>
+                <div class="node class">TreeSet(class)</div>
+            </div>
+        </div>
+
+        <!-- MAP SECTION -->
+        <div class="map-section">
+            <div class="node interface">Map</div>
+            <div class="line-vertical"></div>
+
+            <!-- Row with 3 vertical nodes -->
+            <div class="map-row">
+                <div class="col">
+                    <div class="line-vertical"></div>
+                    <div class="node class">HashMap</div>
+                </div>
+                <div class="col">
+                    <div class="line-vertical"></div>
+                    <div class="node class">LinkedHashMap</div>
+                </div>
+                <div class="col">
+                    <div class="line-vertical"></div>
+                    <div class="node class">TreeMap</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<section class="list-notes">
+    <h2>List Interface - Java</h2>
+    <p>The <strong>List</strong> interface represents an ordered collection of elements where duplicates are allowed.</p>
+    <h3>Types of List:</h3>
+    <ul>
+        <li><b>ArrayList:</b> Resizable array. Fast access, slow insert/delete in middle.</li>
+        <li><b>LinkedList:</b> Doubly-linked list. Fast insert/delete, slow random access.</li>
+        <li><b>Vector:</b> Thread-safe resizable array (legacy).</li>
+        <li><b>Stack:</b> LIFO structure extending Vector.</li>
+    </ul>
+</section>
+
+</body>
+</html>
