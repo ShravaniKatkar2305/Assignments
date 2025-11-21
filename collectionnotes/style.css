@@ -1,7 +1,22 @@
 /* ================= NODE BOXES ================= */
 /* ================= NODE BOXES ================= */
+/* ================= BODY ================= */
+body {
+    font-family: 'Times New Roman', Times, serif;
+    background: #f4f4f4;
+    padding: 20px;
+}
+
+/* ================= HEADINGS ================= */
+h1 {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #333;
+}
+
+/* ================= DIAGRAM ================= */
 .diagram {
-    border: 3px solid #2c3e50; /* Only diagram border */
+    border: 3px solid #2c3e50;
     border-radius: 20px;
     padding: 20px;
     text-align: center;
@@ -80,14 +95,13 @@
 
 /* ================= NOTES SECTIONS ================= */
 .collection-notes, .list-notes, section {
-    border: none; /* Remove border from sections */
+    border: none;
     background-color: #fff;
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     max-width: 800px;
     margin: 30px auto;
-    font-family: 'Times New Roman', serif;
 }
 
 .collection-notes h2, .list-notes h2 {
@@ -140,11 +154,85 @@
     background-color: #ecf0f1;
 }
 
-/* Responsive */
+/* ================= CONTAINERS & BOXES ================= */
+.container {
+    width: 80%;
+    margin: auto;
+    text-align: center;
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.box {
+    background: white;
+    display: inline-block;
+    padding: 20px;
+    margin: 15px auto;
+    width: 80%;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    font-weight: bold;
+    font-size: 18px;
+    color: #222;
+}
+
+.green { background: #93e68a; }
+.orange { background: #ffcc99; }
+
+.card {
+    background: #d4f5d0;
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.heading {
+    text-align: center;
+    margin: 30px 0;
+}
+
+/* ================= TYPES / CARDS ================= */
+.types {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    flex-wrap: wrap;
+}
+
+.type-card {
+    width: 220px;
+    background: #f9f9f9;
+    padding: 15px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.type-card p {
+    text-align: left;
+    font-size: 14px;
+    margin-top: 10px;
+    line-height: 1.4;
+}
+
+.arrow {
+    font-size: 30px;
+    margin: 10px 0 20px 0;
+}
+
+pre {
+    background: #eee;
+    padding: 10px;
+    border-radius: 5px;
+    overflow-x: auto;
+}
+
+/* ================= RESPONSIVE ================= */
 @media (max-width: 768px) {
     .map-row {
         flex-direction: column;
-        align-items:left;
+        align-items: left;
         gap: 15px;
     }
 }

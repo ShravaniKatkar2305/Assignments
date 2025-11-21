@@ -93,17 +93,200 @@
     </div>
 </div>
 
-<section class="list-notes">
-    <h2>List Interface - Java</h2>
-    <p>The <strong>List</strong> interface represents an ordered collection of elements where duplicates are allowed.</p>
-    <h3>Types of List:</h3>
-    <ul>
-        <li><b>ArrayList:</b> Resizable array. Fast access, slow insert/delete in middle.</li>
-        <li><b>LinkedList:</b> Doubly-linked list. Fast insert/delete, slow random access.</li>
-        <li><b>Vector:</b> Thread-safe resizable array (legacy).</li>
-        <li><b>Stack:</b> LIFO structure extending Vector.</li>
-    </ul>
-</section>
+<h1>List in Java (Collection Framework)</h1>
+
+    <div class="card">
+        <h2>What is List?</h2>
+        <p>
+            List is an interface in Java that stores ordered data and allows duplicate values.
+            Elements are accessed using index numbers (0,1,2...). 
+        </p>
+    </div>
+
+    <div class="card">
+        <h2>Types of List</h2>
+    </div>
+
+    <!-- ArrayList -->
+    <div class="card">
+        <h3>1. ArrayList</h3>
+        <ul>
+            <li>Fast for reading/searching</li>
+            <li>Slow for inserting/deleting in the middle</li>
+            <li>Used most commonly</li>
+        </ul>
+        <pre>
+ArrayList&lt;String&gt; list = new ArrayList&lt;&gt;();
+list.add("Apple");
+list.add("Banana");
+list.add("Mango");
+        </pre>
+    </div>
+
+    <!-- LinkedList -->
+    <div class="card">
+        <h3>2. LinkedList</h3>
+        <ul>
+            <li>Fast for insertion and deletion</li>
+            <li>Slower for searching</li>
+            <li>Uses nodes linked to each other</li>
+        </ul>
+        <pre>
+LinkedList&lt;String&gt; list = new LinkedList&lt;&gt;();
+list.add("Monday");
+list.add("Tuesday");
+list.add("Wednesday");
+        </pre>
+    </div>
+
+    <!-- Vector -->
+    <div class="card">
+        <h3>3. Vector</h3>
+        <ul>
+            <li>Similar to ArrayList</li>
+            <li>Thread-safe (synchronized)</li>
+            <li>Slower compared to ArrayList</li>
+        </ul>
+        <pre>
+Vector&lt;Integer&gt; v = new Vector&lt;&gt;();
+v.add(10);
+v.add(20);
+v.add(30);
+        </pre>
+    </div>
+
+    <!-- Stack -->
+    <div class="card">
+        <h3>4. Stack</h3>
+        <ul>
+            <li>Follows LIFO: Last In First Out</li>
+            <li>Push to add, Pop to remove</li>
+        </ul>
+        <pre>
+Stack&lt;String&gt; s = new Stack&lt;&gt;();
+s.push("A");
+s.push("B");
+s.push("C");
+s.pop();   // removes C
+        </pre>
+    </div>
+   
+<h1>Set in Java (Simple Explanation)</h1>
+
+<div class="card">
+    <h2>What is Set?</h2>
+    <p>A Set is a collection that does <b>not allow duplicate values</b>. It is used when you want only unique items.</p>
+</div>
+
+<h2 class="heading">Types of Set</h2>
+
+<div class="container">
+
+    <div class="box">
+        <h3>1. HashSet</h3>
+        <p>• Stores elements in random order<br>
+           • Fastest<br>
+           • No duplicates</p>
+
+        <pre>
+HashSet<String> set = new HashSet<>();
+set.add("Apple");
+set.add("Mango");
+set.add("Apple"); // duplicate ignored
+System.out.println(set);
+        </pre>
+    </div>
+
+    <div class="box">
+        <h3>2. LinkedHashSet</h3>
+        <p>• Maintains insertion order<br>
+           • No duplicates</p>
+
+        <pre>
+LinkedHashSet<String> set = new LinkedHashSet<>();
+set.add("Dog");
+set.add("Cat");
+set.add("Cow");
+System.out.println(set);
+        </pre>
+    </div>
+
+    <div class="box">
+        <h3>3. TreeSet</h3>
+        <p>• Stores elements in sorted order<br>
+           • No duplicates</p>
+
+        <pre>
+TreeSet<Integer> nums = new TreeSet<>();
+nums.add(40);
+nums.add(10);
+nums.add(20);
+System.out.println(nums);
+        </pre>
+    </div>
+</div>
+<h1>Map in Java (Simple Notes)</h1>
+
+<div class="box">
+    <h2>What is Map?</h2>
+    <p>Map is used to store data in key-value pairs. Each key is unique but values can be duplicate.</p>
+</div>
+
+<div class="box">
+    <h2>1. HashMap</h2>
+    <p>✔ Stores key-value pairs</p>
+    <p>✔ No order maintained</p>
+    <p>✔ Allows one null key</p>
+    <pre>
+HashMap<Integer, String> map = new HashMap<>();
+map.put(101, "Riya");
+map.put(102, "Om");
+    </pre>
+</div>
+
+<div class="box">
+    <h2>2. LinkedHashMap</h2>
+    <p>✔ Maintains insertion order</p>
+    <p>✔ Slightly slower than HashMap</p>
+    <pre>
+LinkedHashMap<Integer, String> map = new LinkedHashMap<>();
+map.put(1, "Apple");
+map.put(2, "Banana");
+    </pre>
+</div>
+
+<div class="box">
+    <h2>3. TreeMap</h2>
+    <p>✔ Stores keys in sorted order</p>
+    <p>✔ Does not allow null key</p>
+    <pre>
+TreeMap<Integer, String> map = new TreeMap<>();
+map.put(10, "Blue");
+map.put(20, "Green");
+    </pre>
+</div>
+
+<div class="box">
+    <h2>4. Hashtable</h2>
+    <p>✔ Thread-safe</p>
+    <p>✔ Does not allow null key/value</p>
+    <pre>
+Hashtable<Integer, String> map = new Hashtable<>();
+map.put(1, "Java");
+    </pre>
+</div>
+
+<div class="box">
+    <h2>5. SortedMap</h2>
+    <p>✔ Parent interface of TreeMap</p>
+</div>
+
+<div class="box">
+    <h2>6. NavigableMap</h2>
+    <p>✔ Child interface of SortedMap</p>
+    <p>✔ Provides navigation methods like lowerKey(), higherKey()</p>
+</div>
+
 
 </body>
 </html>
