@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>MySQL Notes — Quick Reference</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <h1>MySQL Notes — Quick Reference</h1>
+      <p class="sub">Concise, copy-paste examples and a cheat sheet for everyday SQL tasks</p>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- Overview -->
+    <section id="overview" class="card">
+      <h2>Overview</h2>
+      <p>
+        MySQL is a relational database management system (RDBMS). Use SQL (Structured Query Language)
+        to create, read, update and delete (CRUD) data. These notes cover essentials: installation,
+        common commands, datatypes, joins, indexing and handy examples.
+      </p>
+    </section>
+
+    <!-- Installation -->
+    <section id="installation" class="card">
+      <h2>Installation & Connect</h2>
+      <ul>
+        <li><strong>Install:</strong> Use package manager (apt/yum/brew) or download from MySQL site.</li>
+        <li><strong>Start server:</strong> <code>sudo service mysql start</code> or systemctl.</li>
+        <li><strong>Connect from terminal:</strong> <code>mysql -u root -p</code></li>
+        <li><strong>Create DB & User:</strong>
+          <pre><code>CREATE DATABASE school;
+CREATE USER 'anna'@'localhost' IDENTIFIED BY 'StrongPass123';
+GRANT ALL PRIVILEGES ON school.* TO 'anna'@'localhost';
+FLUSH PRIVILEGES;</code></pre>
+        </li>
+      </ul>
+    </section>
+
+    <!-- Basic commands -->
+    <section id="basic" class="card">
+      <h2>Basic SQL Commands (CRUD)</h2>
+
+      <h3>Create table</h3>
+      <pre><code>CREATE TABLE students (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(100) NOT NULL,
+  roll_no VARCHAR(20) UNIQUE,
+  dob DATE,
+  score DECIMAL(5,2),
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);</code></pre>
+
+      <h3>Insert</h3>
+      <pre><code>INSERT INTO students (name, roll_no, dob, score)
+VALUES ('Riya Sharma','RN001','2006-08-15', 78.50);</code></pre>
+
+      <h3>Select (read)</h3>
+      <pre><code>SELECT * FROM students;
+SELECT id, name FROM students WHERE score &gt;= 75 ORDER BY score DESC LIMIT 10;</code></pre>
+
+      <h3>Update</h3>
+      <pre><code>UPDATE students
+SET score = 82.00
+WHERE roll_no = 'RN001';</code></pre>
+
+      <h3>Delete</h3>
+      <pre><code>DELETE FROM students WHERE id = 123;</code></pre>
+    </section>
+
+    <!-- Data types -->
+    <section id="datatypes" class="card">
+      <h2>Common Data Types</h2>
+      <table class="cheat">
+        <thead>
+          <tr><th>Type</th><th>Use</th><th>Example</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>INT</td><td>Integers</td><td>INT, TINYINT, BIGINT</td></tr>
+          <tr><td>VARCHAR(n)</td><td>Variable length text</td><td>VARCHAR(255)</td></tr>
+          <tr><td>TEXT</td><td>Long text</td><td>TEXT</td></tr>
+          <tr><td>DATE / DATETIME / TIMESTAMP</td><td>Dates & times</td><td>DATE, DATETIME</td></tr>
+          <tr><td>DECIMAL(p,s)</td><td>Exact numeric (money)</td><td>DECIMAL(10,2)</td></tr>
+          <tr><td>BOOLEAN / TINYINT(1)</td><td>True/False</td><td>BOOLEAN</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- Joins -->
+    <section id="joins" class="card">
+      <h2>Joins — Quick Examples</h2>
+      <p>Assume tables <code>students(id,name,roll_no)</code> and <code>marks(id,student_id,subject,score)</code></p>
+
+      <h3>INNER JOIN</h3>
+      <pre><code>SELECT s.name, m.subject, m.score
+FROM students s
+INNER JOIN marks m ON s.id = m.student_id;</code></pre>
+
+      <h3>LEFT JOIN</h3>
+      <pre><code>SELECT s.name, m.subject, m.score
+FROM students s
+LEFT JOIN marks m ON s.id = m.student_id;</code></pre>
+
+      <h3>RIGHT JOIN</h3>
+      <pre><code>SELECT s.name, m.subject, m.score
+FROM students s
+RIGHT JOIN marks m ON s.id = m.student_id;</code></pre>
+
+      <h3>CROSS JOIN</h3>
+      <pre><code>SELECT s.name, c.course_name
+FROM students s
+CROSS JOIN courses c; -- Cartesian product</code></pre>
+    </section>
+
+    <!-- Indexes and performance -->
+    <section id="indexes" class="card">
+      <h2>Indexes & Performance</h2>
+      <ul>
+        <li><strong>Create index:</strong> <code>CREATE INDEX idx_roll ON students(roll_no);</code></li>
+        <li>Indexes speed up reads but slow inserts/updates. Index columns used in WHERE, JOIN, ORDER BY.</li>
+        <li>Use <code>EXPLAIN SELECT ...</code> to see query plan.</li>
+      </ul>
+    </section>
+
+    <!-- Transactions -->
+    <section id="transactions" class="card">
+      <h2>Transactions</h2>
+      <p>Use transactions for multiple dependent changes:</p>
+      <pre><code>START TRANSACTION;
+UPDATE accounts SET balance = balance - 100 WHERE id = 1;
+UPDATE accounts SET balance = balance + 100 WHERE id = 2;
+COMMIT; -- or ROLLBACK;</code></pre>
+    </section>
+
+    <!-- Backup & restore -->
+    <section id="backup" class="card">
+      <h2>Backup / Restore</h2>
+      <ul>
+        <li><strong>Dump (export):</strong> <code>mysqldump -u user -p dbname &gt; backup.sql</code></li>
+        <li><strong>Restore:</strong> <code>mysql -u user -p dbname &lt; backup.sql</code></li>
+      </ul>
+    </section>
+
+    <!-- Handy tips -->
+    <section id="tips" class="card">
+      <h2>Handy Tips & Best Practices</h2>
+      <ul>
+        <li>Always use parameterized queries/prepared statements to avoid SQL injection.</li>
+        <li>Normalize data but denormalize when necessary for performance.</li>
+        <li>Use clear naming conventions (snake_case or camelCase consistently).</li>
+        <li>Keep small, focused transactions and avoid long-running transactions.</li>
+        <li>Regularly run <code>OPTIMIZE TABLE</code> on heavily updated tables if necessary.</li>
+      </ul>
+    </section>
+
+    <!-- Cheatsheet -->
+    <section id="cheatsheet" class="card">
+      <h2>Cheat Sheet — Common Commands</h2>
+      <div class="grid">
+        <div class="box"><code>SHOW DATABASES;</code><div class="caption">List DBs</div></div>
+        <div class="box"><code>USE dbname;</code><div class="caption">Switch DB</div></div>
+        <div class="box"><code>SHOW TABLES;</code><div class="caption">List tables</div></div>
+        <div class="box"><code>DESCRIBE students;</code><div class="caption">Table schema</div></div>
+        <div class="box"><code>ALTER TABLE t ADD COLUMN c INT;</code><div class="caption">Add column</div></div>
+        <div class="box"><code>DROP TABLE t;</code><div class="caption">Drop table (danger!)</div></div>
+      </div>
+    </section>
+
+    <!-- Example: small project -->
+    <section id="example" class="card">
+      <h2>Small Example: Create & Query</h2>
+      <pre><code>-- create database and tables
+CREATE DATABASE bookshop;
+USE bookshop;
+
+CREATE TABLE authors (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(150) NOT NULL
+);
+
+CREATE TABLE books (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  author_id INT,
+  title VARCHAR(255),
+  price DECIMAL(8,2),
+  FOREIGN KEY (author_id) REFERENCES authors(id)
+);
+
+-- insert & join
+INSERT INTO authors (name) VALUES ('M. Patel');
+INSERT INTO books (author_id, title, price) VALUES (1,'SQL Basics', 299.00);
+
+SELECT b.title, a.name, b.price
+FROM books b
+JOIN authors a ON b.author_id = a.id;</code></pre>
+    </section>
+
+    <footer class="notes-footer">
+      <p>Prepared by: <strong>[Your Name]</strong> — Save this file and print if needed.</p>
+    </footer>
+  </main>
+</body>
+</html>
